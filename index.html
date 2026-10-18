@@ -72,11 +72,14 @@ footer p{margin:0 0 4px}
 <div class="wrap">
 <header class="hero">
   <h1>منيو الفاهيتة</h1>
-  <p>فاهيتة دجاج طازجة، صوصات البيت، ومشروبات باردة</p>
+  <p>فاهيتة دجاج طازجة، لفات وبوكسات، صوصات البيت، ومشروبات باردة</p>
 </header>
 
 <nav class="tabs" id="tabs" aria-label="أقسام المنيو">
   <a href="#fajita" class="on">الفاهيتة</a>
+  <a href="#wraps">اللفات</a>
+  <a href="#boxes">البوكسات</a>
+  <a href="#sides">الجانبية</a>
   <a href="#sauces">الصوصات</a>
   <a href="#drinks">المشروبات</a>
 </nav>
@@ -92,6 +95,32 @@ footer p{margin:0 0 4px}
     <p class="desc">الحصة الكبيرة للمجموعات: دجاج متبّل مشوي مع الفلفل والبصل.</p><span class="cal">≈ 1٬680 سعرة حرارية</span></div>
   <div class="item"><div class="row"><h3 class="name">صحن فاهيتة دجاج</h3><i class="leader"></i><span class="price">7٫000<small>د.ع</small></span></div>
     <p class="desc">صحن فردي من الفاهيتة الساخنة، مناسب لوجبة سريعة.</p><span class="cal">≈ 380 سعرة حرارية</span></div>
+</section>
+
+<section id="wraps">
+  <div class="sec-head"><h2>اللفات</h2><span>٣ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">لفة فاهيتة صمون كهربائي</h3><i class="leader"></i><span class="price">4٫000<small>د.ع</small></span></div>
+    <p class="desc">صمون كهربائي محشو بدجاج الفاهيتة والخضار.</p><span class="cal">≈ 550 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">لفة ساج فاهيتة</h3><i class="leader"></i><span class="price">3٫500<small>د.ع</small></span></div>
+    <p class="desc">خبز ساج رقيق ملفوف بدجاج الفاهيتة والخضار.</p><span class="cal">≈ 480 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">سلة صمون</h3><i class="leader"></i><span class="price">4٫000<small>د.ع</small></span></div>
+    <p class="desc">سلة صمون بنظام نصف بنصف.</p></div>
+</section>
+
+<section id="boxes">
+  <div class="sec-head"><h2>البوكسات</h2><span>٣ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس لفتين</h3><i class="leader"></i><span class="price">8٫000<small>د.ع</small></span></div>
+    <p class="desc">لفتان مع بطاطا وصوصات.</p><span class="cal">≈ 1٬500 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس ٤ لفات</h3><i class="leader"></i><span class="price">14٫000<small>د.ع</small></span></div>
+    <p class="desc">أربع لفات مع بطاطا وصوصات.</p><span class="cal">≈ 2٬600 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس ميكس</h3><i class="leader"></i><span class="price">16٫000<small>د.ع</small></span></div>
+    <p class="desc">بوكس ميكس متنوع.</p></div>
+</section>
+
+<section id="sides">
+  <div class="sec-head"><h2>الجانبية</h2><span>١ صنف</span></div>
+  <div class="item"><div class="row"><h3 class="name">بطاطا فينغر بالجبن</h3><i class="leader"></i><span class="price">3٫500<small>د.ع</small></span></div>
+    <p class="desc">أصابع بطاطا مقرمشة مع صوص الجبن.</p><span class="cal">≈ 450 سعرة حرارية</span></div>
 </section>
 
 <section id="sauces">
@@ -131,7 +160,7 @@ footer p{margin:0 0 4px}
   var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
   function set(i){
     links.forEach(function(a,j){a.classList.toggle('on',i===j)});
-    try{links[i].scrollIntoView({inline:'center',block:'nearest'})}catch(e){}
+    var nav=document.getElementById('tabs'),a=links[i],nr=nav.getBoundingClientRect(),ar=a.getBoundingClientRect();nav.scrollLeft+=(ar.left+ar.width/2)-(nr.left+nr.width/2);
   }
   function onScroll(){
     var y=window.scrollY+110,cur=0;
