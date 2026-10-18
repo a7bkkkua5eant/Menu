@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>منيو الفاهيتة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#F2F4EE; --surface:#FFFFFF; --ink:#1C2A22; --muted:#5E6E64;
+  --green:#1F3A2E; --on-green:#F2F4EE; --price:#B8361E; --saffron:#E9A62B;
+  --line:#C9D1C6; --chip:#E6EBE0;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#111A14; --surface:#19261E; --ink:#EEF1EA; --muted:#9FB0A5;
+    --green:#0C130F; --on-green:#EEF1EA; --price:#F2806A; --saffron:#F0B646;
+    --line:#2D3F33; --chip:#223329;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#111A14; --surface:#19261E; --ink:#EEF1EA; --muted:#9FB0A5;
+  --green:#0C130F; --on-green:#EEF1EA; --price:#F2806A; --saffron:#F0B646;
+  --line:#2D3F33; --chip:#223329;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal","Segoe UI",Tahoma,Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--green);z-index:10}
+.wrap{max-width:560px;margin:0 auto}
+
+header.hero{background:var(--green);color:var(--on-green);padding:36px 22px 30px;position:relative;overflow:hidden}
+header.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:6px;background:repeating-linear-gradient(90deg,var(--saffron) 0 18px,transparent 18px 26px)}
+.hero h1{font-family:"Reem Kufi","Tajawal",sans-serif;font-weight:700;font-size:44px;line-height:1.15;margin:0 0 8px}
+.hero p{margin:0;color:var(--on-green);opacity:.82;font-size:15px}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--green);padding:10px 14px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav.tabs::-webkit-scrollbar{display:none}
+nav.tabs a{flex:1 0 auto;text-align:center;text-decoration:none;color:var(--on-green);font-weight:500;font-size:15px;padding:7px 18px;border-radius:999px;border:1.5px solid rgba(242,244,238,.35);white-space:nowrap}
+nav.tabs a.on{background:var(--saffron);border-color:var(--saffron);color:#1C2A22;font-weight:700}
+nav.tabs a:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
+
+main{padding:8px 18px 40px}
+section{padding-top:26px}
+.sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;padding-bottom:10px;border-bottom:2.5px solid var(--green)}
+.sec-head h2{font-family:"Reem Kufi","Tajawal",sans-serif;font-weight:700;font-size:28px;margin:0;color:var(--ink)}
+.sec-head span{color:var(--muted);font-size:14px}
+
+.item{padding:16px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.row{display:flex;align-items:baseline;gap:10px}
+.name{font-weight:700;font-size:18px;margin:0}
+.leader{flex:1;border-bottom:2px dotted var(--line);transform:translateY(-4px);min-width:16px}
+.price{font-weight:700;font-size:18px;color:var(--price);white-space:nowrap}
+.price small{font-size:13px;font-weight:500;margin-inline-start:3px}
+.desc{margin:4px 0 8px;color:var(--muted);font-size:15px}
+.cal{display:inline-block;background:var(--chip);color:var(--ink);font-size:13px;font-weight:500;padding:2px 12px;border-radius:999px}
+
+footer{padding:0 18px calc(34px + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:13px;text-align:center}
+footer p{margin:0 0 4px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+  <h1>منيو الفاهيتة</h1>
+  <p>فاهيتة دجاج طازجة، لفات وبوكسات، صوصات البيت، ومشروبات باردة</p>
+</header>
+
+<nav class="tabs" id="tabs" aria-label="أقسام المنيو">
+  <a href="#fajita" class="on">الفاهيتة</a>
+  <a href="#wraps">اللفات</a>
+  <a href="#boxes">البوكسات</a>
+  <a href="#sides">الجانبية</a>
+  <a href="#sauces">الصوصات</a>
+  <a href="#drinks">المشروبات</a>
+</nav>
+
+<main>
+<section id="fajita">
+  <div class="sec-head"><h2>الفاهيتة</h2><span>٤ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">فاهيتة دجاج ربع كيلو</h3><i class="leader"></i><span class="price">12٫000<small>د.ع</small></span></div>
+    <p class="desc">شرائح دجاج متبّلة ومشوية مع الفلفل والبصل، تكفي شخصًا إلى شخصين.</p><span class="cal">≈ 420 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">فاهيتة دجاج نصف كيلو</h3><i class="leader"></i><span class="price">14٫000<small>د.ع</small></span></div>
+    <p class="desc">حصة عائلية صغيرة من الدجاج المتبّل مع الفلفل والبصل المشوي.</p><span class="cal">≈ 840 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">فاهيتة دجاج كيلو</h3><i class="leader"></i><span class="price">16٫000<small>د.ع</small></span></div>
+    <p class="desc">الحصة الكبيرة للمجموعات: دجاج متبّل مشوي مع الفلفل والبصل.</p><span class="cal">≈ 1٬680 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">صحن فاهيتة دجاج</h3><i class="leader"></i><span class="price">7٫000<small>د.ع</small></span></div>
+    <p class="desc">صحن فردي من الفاهيتة الساخنة، مناسب لوجبة سريعة.</p><span class="cal">≈ 380 سعرة حرارية</span></div>
+</section>
+
+<section id="wraps">
+  <div class="sec-head"><h2>اللفات</h2><span>٣ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">لفة فاهيتة صمون كهربائي</h3><i class="leader"></i><span class="price">4٫000<small>د.ع</small></span></div>
+    <p class="desc">صمون كهربائي محشو بدجاج الفاهيتة والخضار.</p><span class="cal">≈ 550 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">لفة ساج فاهيتة</h3><i class="leader"></i><span class="price">3٫500<small>د.ع</small></span></div>
+    <p class="desc">خبز ساج رقيق ملفوف بدجاج الفاهيتة والخضار.</p><span class="cal">≈ 480 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">سلة صمون</h3><i class="leader"></i><span class="price">4٫000<small>د.ع</small></span></div>
+    <p class="desc">سلة صمون بنظام نصف بنصف.</p></div>
+</section>
+
+<section id="boxes">
+  <div class="sec-head"><h2>البوكسات</h2><span>٣ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس لفتين</h3><i class="leader"></i><span class="price">8٫000<small>د.ع</small></span></div>
+    <p class="desc">لفتان مع بطاطا وصوصات.</p><span class="cal">≈ 1٬500 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس ٤ لفات</h3><i class="leader"></i><span class="price">14٫000<small>د.ع</small></span></div>
+    <p class="desc">أربع لفات مع بطاطا وصوصات.</p><span class="cal">≈ 2٬600 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">بوكس ميكس</h3><i class="leader"></i><span class="price">16٫000<small>د.ع</small></span></div>
+    <p class="desc">بوكس ميكس متنوع.</p></div>
+</section>
+
+<section id="sides">
+  <div class="sec-head"><h2>الجانبية</h2><span>١ صنف</span></div>
+  <div class="item"><div class="row"><h3 class="name">بطاطا فينغر بالجبن</h3><i class="leader"></i><span class="price">3٫500<small>د.ع</small></span></div>
+    <p class="desc">أصابع بطاطا مقرمشة مع صوص الجبن.</p><span class="cal">≈ 450 سعرة حرارية</span></div>
+</section>
+
+<section id="sauces">
+  <div class="sec-head"><h2>الصوصات</h2><span>٤ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">صوص ريحة أهلنا</h3><i class="leader"></i><span class="price">2٫000<small>د.ع</small></span></div>
+    <p class="desc">صوص البيت الخاص بنكهة الأعشاب والتوابل.</p><span class="cal">≈ 90 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">صوص المكسيكي</h3><i class="leader"></i><span class="price">1٫500<small>د.ع</small></span></div>
+    <p class="desc">صوص حار منعش بالطماطم والفلفل.</p><span class="cal">≈ 40 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">صوص المكس</h3><i class="leader"></i><span class="price">2٫500<small>د.ع</small></span></div>
+    <p class="desc">خلطة كريمية من عدة صوصات بطعم متوازن.</p><span class="cal">≈ 110 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">صوص البرغند</h3><i class="leader"></i><span class="price">3٫000<small>د.ع</small></span></div>
+    <p class="desc">صوص غني وكثيف بنكهة الفلفل والتوابل.</p><span class="cal">≈ 120 سعرة حرارية</span></div>
+</section>
+
+<section id="drinks">
+  <div class="sec-head"><h2>المشروبات</h2><span>٤ أصناف</span></div>
+  <div class="item"><div class="row"><h3 class="name">كوكاكولا</h3><i class="leader"></i><span class="price">500<small>د.ع</small></span></div>
+    <p class="desc">مشروب غازي بارد.</p><span class="cal">≈ 140 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">سبرايت</h3><i class="leader"></i><span class="price">500<small>د.ع</small></span></div>
+    <p class="desc">مشروب غازي بنكهة الليمون، بارد ومنعش.</p><span class="cal">≈ 140 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">ديو</h3><i class="leader"></i><span class="price">500<small>د.ع</small></span></div>
+    <p class="desc">مشروب غازي بنكهة الحمضيات.</p><span class="cal">≈ 150 سعرة حرارية</span></div>
+  <div class="item"><div class="row"><h3 class="name">بيبسي</h3><i class="leader"></i><span class="price">500<small>د.ع</small></span></div>
+    <p class="desc">مشروب غازي بارد.</p><span class="cal">≈ 150 سعرة حرارية</span></div>
+</section>
+</main>
+
+<footer>
+  <p>الأسعار بالدينار العراقي (د.ع).</p>
+  <p>السعرات الحرارية تقريبية وقد تختلف حسب طريقة التحضير.</p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('#tabs a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
+  function set(i){
+    links.forEach(function(a,j){a.classList.toggle('on',i===j)});
+    var nav=document.getElementById('tabs'),a=links[i],nr=nav.getBoundingClientRect(),ar=a.getBoundingClientRect();nav.scrollLeft+=(ar.left+ar.width/2)-(nr.left+nr.width/2);
+  }
+  function onScroll(){
+    var y=window.scrollY+110,cur=0;
+    secs.forEach(function(s,i){if(s.offsetTop<=y)cur=i});
+    set(cur);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+})();
+</script>
+</body>
+</html>
