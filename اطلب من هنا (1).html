@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>اطلب من هنا</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+:root{--bg:#eef2f1;--surface:#fff;--ink:#14302e;--muted:#5c716f;--line:#d3dedc;--accent:#e8a317;--accent-ink:#2b1d00;--deep:#0f4c4a;--deep-ink:#fff;--paper:#fffefb;--paper-ink:#222;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1a19;--surface:#152827;--ink:#e6f0ee;--muted:#9bb2af;--line:#26403e;--deep:#2a8a86;--deep-ink:#041312}}
+:root[data-theme="dark"]{--bg:#0d1a19;--surface:#152827;--ink:#e6f0ee;--muted:#9bb2af;--line:#26403e;--deep:#2a8a86;--deep-ink:#041312}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tajawal",Tahoma,"Segoe UI",sans-serif;line-height:1.6}
+header{background:var(--deep);color:var(--deep-ink);padding:18px 20px}
+header h1{margin:0;font-size:1.5rem;font-weight:800}
+header p{margin:2px 0 0;opacity:.85;font-size:.95rem}
+main{display:grid;gap:18px;padding:18px;max-width:1100px;margin:auto;grid-template-columns:1fr}
+@media(min-width:860px){main{grid-template-columns:1.4fr 1fr;align-items:start}}
+section{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;min-width:0}
+h2{margin:0 0 12px;font-size:1.15rem}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px}
+.tabs button{flex:none;border:1px solid var(--line);background:transparent;color:var(--ink);padding:6px 14px;border-radius:99px;font:inherit;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.menu{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.item{border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:4px;text-align:start;background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.item:hover{border-color:var(--accent)}
+.item b{font-weight:700}.item span{color:var(--muted);font-size:.9rem}
+.item.na{opacity:.55;cursor:not-allowed;border-style:dashed}.item.na:hover{border-color:var(--line)}.item.na span{color:var(--ink);font-weight:700}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:1.1rem;cursor:pointer}
+.empty{color:var(--muted);padding:14px 0}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.fields input,.fields select,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:90px;margin-bottom:8px}
+.total{display:flex;justify-content:space-between;font-weight:800;font-size:1.2rem;margin:12px 0}
+.primary{display:block;width:100%;padding:12px;border:0;border-radius:10px;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:800;font-size:1.05rem;cursor:pointer;text-align:center;text-decoration:none}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.ghost{padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink);font:inherit;cursor:pointer}
+.err{color:#b3261e;min-height:1.4em;margin:0 0 6px;font-weight:700}
+@media (prefers-color-scheme:dark){.err{color:#ff8a80}}
+.sf{display:none}.staff .sf{display:block}.staff .cu{display:none}
+.hide{display:none!important}
+.sent{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0}
+.stack{display:grid;gap:8px}
+#qrBox{text-align:center;margin:10px 0}#qrBox svg{width:200px;height:200px;background:#fff;padding:6px;border-radius:8px}
+.receipt{background:var(--paper);color:var(--paper-ink);max-width:340px;margin:12px auto;padding:18px 16px 26px;font-family:"Courier New",monospace;font-size:.9rem;
+-webkit-mask:radial-gradient(circle 6px at 6px 100%,#0000 98%,#000) 0 0/12px 100%;mask:radial-gradient(circle 6px at 6px 100%,#0000 98%,#000) 0 0/12px 100%;border:1px solid #e4e0d4}
+.receipt h3{text-align:center;margin:0;font-size:1.2rem;font-family:"Tajawal",sans-serif}
+.receipt .c{text-align:center}
+.receipt hr{border:0;border-top:1px dashed #888;margin:8px 0}
+.receipt .l{display:flex;justify-content:space-between;gap:8px}
+.receipt .big{font-weight:700;font-size:1.05rem}
+.actions{display:flex;gap:8px;justify-content:center}
+footer{text-align:center;padding:10px 0 24px}
+#cta{display:none;position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.browse #cta{display:block}.staff #cta{display:none}
+.browse #orderCol{display:none}.browse main{grid-template-columns:1fr;max-width:760px}
+.browse .item{cursor:default}.browse .item:hover{border-color:var(--line)}
+body.browse{padding-bottom:84px}
+.fields input:disabled{opacity:.7;cursor:not-allowed}
+@media print{body[data-p] *{visibility:hidden}
+body[data-p="r"] #receipt,body[data-p="r"] #receipt *,body[data-p="q"] #qrBox,body[data-p="q"] #qrBox *{visibility:visible}
+body[data-p="r"] #receipt,body[data-p="q"] #qrBox{position:absolute;inset:0 auto auto 0;width:100%}
+.receipt{border:0;-webkit-mask:none;mask:none}}
+</style>
+</head>
+<body>
+<header><h1 id="ht">قائمة الطعام</h1><p id="hp">تصفح القائمة، وإذا أعجبتك وجبة اضغط اطلب الآن.</p></header>
+<main>
+<section aria-labelledby="mh">
+  <h2 id="mh">القائمة</h2>
+  <div class="tabs" id="tabs"></div>
+  <div class="menu" id="menu"></div>
+</section>
+<div class="stack" id="orderCol">
+<section aria-labelledby="oh">
+  <h2 id="oh">طلبك</h2>
+  <button class="ghost cu" id="back" style="margin-bottom:10px">رجوع إلى القائمة</button>
+  <div id="orderForm">
+    <div class="fields">
+      <input id="cust" placeholder="الاسم" aria-label="الاسم" autocomplete="name">
+      <input id="phone" placeholder="رقم الهاتف" aria-label="رقم الهاتف" inputmode="tel" autocomplete="tel">
+      <input id="addr" placeholder="العنوان" aria-label="العنوان" autocomplete="street-address">
+      <input id="table" placeholder="رقم الطاولة: غير متوفر الآن" aria-label="رقم الطاولة غير متوفر الآن" disabled>
+      <select id="type" class="sf" aria-label="نوع الطلب"><option>توصيل</option><option>سفري</option></select>
+      <input id="disc" class="sf" type="number" min="0" max="100" placeholder="خصم %" aria-label="نسبة الخصم">
+    </div>
+    <div id="cart"></div>
+    <div class="total"><span>المجموع</span><span id="total">0 د.ع</span></div>
+    <p class="err cu" id="err" role="alert"></p>
+    <button class="primary cu" id="send" disabled>إرسال الطلب</button>
+    <button class="primary sf" id="make" disabled>إصدار الوصل</button>
+  </div>
+  <div id="done" class="hide cu">
+    <h2>طلبك جاهز للإرسال</h2>
+    <div class="sent" id="msgtxt"></div>
+    <div class="stack">
+      <a class="primary" id="wa" target="_blank" rel="noopener">أرسل الطلب إلى المطعم عبر واتساب</a>
+      <button class="ghost" id="copy">نسخ الطلب</button>
+      <button class="ghost" id="again">طلب جديد</button>
+    </div>
+  </div>
+</section>
+<section class="sf" aria-labelledby="sh">
+  <h2 id="sh">استلام الطلب وطباعة الوصل</h2>
+  <p style="color:var(--muted);margin:0 0 10px">1) الصق رسالة الطلب من واتساب. 2) اضغط تحميل الطلب. 3) اضغط إصدار الوصل ثم طباعة.</p>
+  <label for="paste">الصق الطلب الذي وصل على واتساب</label>
+  <textarea id="paste" placeholder="الصق الرسالة هنا"></textarea>
+  <button class="ghost" id="load">تحميل الطلب</button>
+  <div id="receipt" class="receipt hide"></div>
+  <div class="actions"><button class="ghost" id="prn" disabled>طباعة الوصل</button><button class="ghost" id="newOrder">طلب جديد</button></div>
+  <hr style="border:0;border-top:1px dashed var(--line);margin:16px 0">
+  <label for="qrurl">رابط القائمة للباركود</label>
+  <input id="qrurl" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;direction:ltr">
+  <div id="qrBox"></div>
+  <div class="actions"><button class="ghost" id="prq">طباعة الباركود</button></div>
+</section>
+</div>
+</main>
+<div id="cta"><button class="primary" id="go">اطلب الآن</button></div>
+<footer><button class="ghost" id="mode">صفحة المطعم: استلام الطلب وطباعة الوصل</button></footer>
+<script>
+const WA=""; /* رقم واتساب المطعم بصيغة دولية بدون +، مثل 9647701234567 */
+const LINK="https://claude.ai/artifact/BR16FLsMMCds5cGuhUtyee";
+const F="الفاهيتا",B="البوكسات",M="الوجبات",S="الجانبيات",C="الصوصات",D="المشروبات";
+const MENU=[
+{n:"فاهيتا دجاج ربع كيلو",p:12000,c:F},{n:"فاهيتا دجاج نصف كيلو",p:14000,c:F},{n:"فاهيتا دجاج كيلو",p:16000,c:F},
+{n:"صحن فاهيتا دجاج",p:7000,c:F},{n:"لفة فاهيتا صمون كهربائي",p:4000,c:F},{n:"لفة صاج فاهيتا",p:3500,c:F},{n:"سلة صمون",p:4000,c:F},
+{n:"بوكس لفتين",p:8000,c:B},{n:"بوكس 4 لفات",p:14000,c:B},{n:"بوكس ميكس",p:16000,c:B},
+{n:"وجبة إيزو فاهيتا",p:8000,c:M},{n:"شاورما دجاج",p:0,c:M,na:1},{n:"كباب عراقي",p:0,c:M,na:1},{n:"تكة لحم",p:0,c:M,na:1},{n:"برغر لحم",p:0,c:M,na:1},
+{n:"بطاطا فينجر بالجبن",p:3500,c:S},{n:"بطاطس مقلية",p:0,c:S,na:1},{n:"حمص",p:0,c:S,na:1},{n:"سلطة",p:0,c:S,na:1},
+{n:"صوص رانش",p:2000,c:C},{n:"صوص ميكس صغير",p:1500,c:C},{n:"صوص ميكس",p:2500,c:C},{n:"صوص البرغندة",p:3500,c:C},
+{n:"صوص خردل",p:2000,c:C},{n:"صوص أورجينال",p:3000,c:C},{n:"صوص أكسترا",p:3500,c:C},{n:"صوص تشيكنز",p:3500,c:C},{n:"صوص سبايسي",p:3500,c:C},
+{n:"كوكا كولا",p:500,c:D},{n:"سبرايت",p:500,c:D},{n:"ديو",p:500,c:D},{n:"بيبسي",p:500,c:D},{n:"سفن أب",p:500,c:D},
+{n:"عصير برتقال",p:2500,c:D},{n:"عصير ليمون",p:2500,c:D},{n:"شاي",p:0,c:D,na:1},{n:"ماء",p:0,c:D,na:1}];
+const CATS=["الكل",...new Set(MENU.map(m=>m.c))];
+let cat="الكل",cart={},seq=1,staff=false;
+try{seq=+localStorage.getItem("rcpt_seq")||1}catch(e){}
+const $=id=>document.getElementById(id);
+const fmt=n=>Math.round(n).toLocaleString("ar-IQ")+" د.ع";
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function drawTabs(){$("tabs").innerHTML=CATS.map(c=>`<button aria-pressed="${c===cat}" data-c="${c}">${c}</button>`).join("");
+ $("tabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{cat=b.dataset.c;drawTabs();drawMenu()})}
+function drawMenu(){$("menu").innerHTML=MENU.map((m,i)=>({m,i})).filter(x=>cat==="الكل"||x.m.c===cat)
+ .map(x=>`<button class="item${x.m.na?" na":""}" data-i="${x.i}"${x.m.na?" disabled":""}><b>${x.m.n}</b><span>${x.m.na?"غير متوفر الآن":fmt(x.m.p)}</span></button>`).join("");
+ $("menu").querySelectorAll(".item:not(.na)").forEach(b=>b.onclick=()=>{if(document.body.classList.contains("browse"))return;cart[b.dataset.i]=(cart[b.dataset.i]||0)+1;drawCart()})}
+const sub=()=>Object.entries(cart).reduce((s,[i,q])=>s+MENU[i].p*q,0);
+const disc=()=>Math.min(100,Math.max(0,+$("disc").value||0));
+function drawCart(){const e=Object.entries(cart);
+ $("cart").innerHTML=e.length?e.map(([i,q])=>`<div class="row"><span>${MENU[i].n}</span><div class="qty"><button data-i="${i}" data-d="-1" aria-label="إنقاص">−</button><b>${q}</b><button data-i="${i}" data-d="1" aria-label="زيادة">+</button></div><span>${fmt(MENU[i].p*q)}</span></div>`).join(""):`<p class="empty">اضغط على وجبة من القائمة لإضافتها.</p>`;
+ $("cart").querySelectorAll(".qty button").forEach(b=>b.onclick=()=>{const i=b.dataset.i;cart[i]+=+b.dataset.d;if(cart[i]<=0)delete cart[i];drawCart()});
+ $("total").textContent=fmt(sub()*(1-disc()/100));$("send").disabled=$("make").disabled=!e.length}
+$("disc").oninput=drawCart;
+
+let oid="";
+function newId(){return (Date.now().toString(36)+Math.random().toString(36).slice(2,4)).slice(-6).toUpperCase()}
+function msg(){return ["طلب جديد","رقم الطلب: "+oid,"الاسم: "+$("cust").value.trim(),"الرقم: "+$("phone").value.trim(),"العنوان: "+$("addr").value.trim(),
+ ...Object.entries(cart).map(([i,q])=>`${q}x ${MENU[i].n}`),"الإجمالي: "+fmt(sub())].join("\n")}
+$("send").onclick=()=>{
+ if(!$("cust").value.trim()||!$("phone").value.trim()||!$("addr").value.trim()){$("err").textContent="اكتب الاسم ورقم الهاتف والعنوان قبل الإرسال.";return}
+ $("err").textContent="";oid=newId();const m=msg();$("msgtxt").textContent=m;
+ const a=$("wa");if(WA){a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(m);a.classList.remove("hide")}else a.classList.add("hide");
+ $("orderForm").classList.add("hide");$("done").classList.remove("hide");$("done").scrollIntoView({behavior:"smooth"})};
+$("copy").onclick=async()=>{try{await navigator.clipboard.writeText($("msgtxt").textContent);$("copy").textContent="تم النسخ"}catch(e){$("copy").textContent="حدد النص أعلاه وانسخه"}};
+function reset(){cart={};["cust","phone","addr","disc","paste"].forEach(k=>$(k).value="");$("done").classList.add("hide");$("orderForm").classList.remove("hide");
+ $("receipt").classList.add("hide");$("prn").disabled=true;$("copy").textContent="نسخ الطلب";drawCart()}
+$("again").onclick=reset;$("newOrder").onclick=reset;
+
+$("load").onclick=()=>{cart={};oid="";$("paste").value.split("\n").forEach(l=>{l=l.trim();let m;
+ if(m=l.match(/^(\d+)\s*x\s*(.+)$/i)){const i=MENU.findIndex(x=>x.n===m[2].trim()&&!x.na);if(i>=0)cart[i]=(cart[i]||0)+ +m[1]}
+ else if(m=l.match(/^الاسم:\s*(.*)$/))$("cust").value=m[1];
+ else if(m=l.match(/^الرقم:\s*(.*)$/))$("phone").value=m[1];
+ else if(m=l.match(/^العنوان:\s*(.*)$/))$("addr").value=m[1];
+ else if(m=l.match(/^رقم الطلب:\s*(.*)$/))oid=m[1].trim()});drawCart()};
+
+$("make").onclick=()=>{
+ const now=new Date(),d=disc(),s=sub(),dv=s*d/100;
+ const lines=Object.entries(cart).map(([i,q])=>`<div class="l"><span>${q} × ${MENU[i].n}</span><span>${fmt(MENU[i].p*q)}</span></div>`).join("");
+ const cu=esc($("cust").value.trim()),ph=esc($("phone").value.trim()),ad=esc($("addr").value.trim());
+ $("receipt").innerHTML=`<h3>مطعمنا</h3><div class="c">وصل رقم ${oid||String(seq).padStart(4,"0")}</div><div class="c">${now.toLocaleString("ar-IQ")}</div><hr>
+ <div class="l"><span>النوع</span><span>${$("type").value}</span></div>
+ ${ad?`<div class="l"><span>العنوان</span><span>${ad}</span></div>`:""}
+ ${cu?`<div class="l"><span>الزبون</span><span>${cu}</span></div>`:""}
+ ${ph?`<div class="l"><span>الهاتف</span><span>${ph}</span></div>`:""}<hr>${lines}<hr>
+ <div class="l"><span>المجموع الفرعي</span><span>${fmt(s)}</span></div>
+ ${d?`<div class="l"><span>خصم ${d}%</span><span>−${fmt(dv)}</span></div>`:""}
+ <div class="l big"><span>الإجمالي</span><span>${fmt(s-dv)}</span></div><hr><div class="c">شكراً لزيارتكم</div>`;
+ seq++;try{localStorage.setItem("rcpt_seq",seq)}catch(e){}
+ $("receipt").classList.remove("hide");$("prn").disabled=false};
+function pr(k){document.body.dataset.p=k;window.print();setTimeout(()=>delete document.body.dataset.p,500)}
+$("prn").onclick=()=>pr("r");$("prq").onclick=()=>pr("q");
+
+function drawQR(){try{const q=qrcode(0,"M");q.addData($("qrurl").value.trim());q.make();$("qrBox").innerHTML=q.createSvgTag({cellSize:5,margin:2,scalable:true})}catch(e){$("qrBox").textContent="تعذر إنشاء الباركود."}}
+$("qrurl").value=LINK;$("qrurl").oninput=drawQR;
+function view(v){document.body.classList.toggle("browse",v==="browse");
+ $("ht").textContent=v==="browse"?"قائمة الطعام":"أكمل طلبك";
+ $("hp").textContent=v==="browse"?"تصفح القائمة، وإذا أعجبتك وجبة اضغط اطلب الآن.":"اختر وجباتك واكتب اسمك ورقمك وعنوانك ثم أرسل الطلب.";
+ window.scrollTo(0,0)}
+$("go").onclick=()=>view("order");$("back").onclick=()=>view("browse");
+$("mode").onclick=()=>{staff=!staff;document.body.classList.toggle("staff",staff);
+ $("mode").textContent=staff?"العودة لصفحة الزبون":"صفحة المطعم: استلام الطلب وطباعة الوصل";
+ if(staff){view("order");$("ht").textContent="صفحة المطعم";$("hp").textContent="استلام الطلب وطباعة الوصل.";reset();drawQR()}else{view("browse")}};
+view("browse");drawTabs();drawMenu();drawCart();
+</script>
+</body>
+</html>
